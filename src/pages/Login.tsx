@@ -3,15 +3,27 @@ import FormikInput from "../components/form/FormikInput";
 import AlertMessage from "../components/general/AlertMessage";
 import useLoginContainer from "../containers/useLoginContainer";
 import { useAlert } from "../contexts/AlertContext";
-import { Box, Button, Container, Grid, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Container,
+  FormControl,
+  Grid,
+  InputLabel,
+  MenuItem,
+  Select,
+  Typography,
+} from "@mui/material";
 import LocalMallIcon from "@mui/icons-material/LocalMall";
 import FormikPassword from "../components/form/FormikPassword";
 import LoginSvg from "../assets/svg/Login";
+import { userTypes } from "../utils/constants";
 
 const Login = () => {
   const { value, msg, setValue, error } = useAlert();
 
-  const { formik, loading, handleNavigateSignUp } = useLoginContainer();
+  const { formik, loading, handleNavigateSignUp, handleFill, filledValue } =
+    useLoginContainer();
   return (
     <Container maxWidth="xl">
       <Grid container spacing={3}>
@@ -78,6 +90,20 @@ const Login = () => {
               >
                 <Typography sx={{ mt: 1 }}>Or</Typography>
                 <Button onClick={handleNavigateSignUp}>Sign Up</Button>
+
+                <FormControl sx={{ mt: 2, minWidth: 220 }}>
+                  <InputLabel>Fill Account (testing only)</InputLabel>
+                  <Select
+                    label="Fill Account (testing only)"
+                    onChange={handleFill}
+                    value={filledValue}
+                  >
+                    <MenuItem value={userTypes.shop}>Shop</MenuItem>
+                    <MenuItem value={userTypes.superAdmin}>
+                      Super Admin
+                    </MenuItem>
+                  </Select>
+                </FormControl>
               </Box>
             </Box>
           </Box>
@@ -87,7 +113,7 @@ const Login = () => {
           xs={12}
           lg={6}
           sx={{
-            display: "flex",
+            display: { xs: "none", lg: "flex" },
             height: "100vh",
             flexDirection: "column",
             justifyContent: "center",

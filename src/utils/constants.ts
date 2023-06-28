@@ -1,3 +1,8 @@
+export const userTypes = {
+  shop: "shop",
+  superAdmin: "superAdmin",
+};
+
 export const categories = {
   tShirt: "tShirts",
   jeans: "jeans",
