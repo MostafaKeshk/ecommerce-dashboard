@@ -35,7 +35,7 @@ const FormikMap: React.FC<IProps> = ({
 }) => {
   const { isLoaded } = useLoadScript({
     id: "google-map-script",
-    // googleMapsApiKey: `${process.env.REACT_APP_GOOGLE_TOKEN}`,
+    googleMapsApiKey: `${process.env.REACT_APP_GOOGLE_TOKEN}`,
     libraries,
   } as googleType);
 
